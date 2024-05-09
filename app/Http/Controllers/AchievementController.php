@@ -8,7 +8,7 @@
 
     class AchievementController extends Controller
     {
-        public function index()
+        public function index(): \Illuminate\Http\JsonResponse
         {
             $achievements = Achievement::all();
             return response()->json(['achievements' => $achievements], 200);
@@ -39,7 +39,7 @@
             return response()->json(['achievement' => $achievement], 201);
         }
 
-        public function show($id)
+        public function show($id): \Illuminate\Http\JsonResponse
         {
             $achievement = Achievement::find($id);
 
@@ -50,7 +50,7 @@
             return response()->json(['achievement' => $achievement], 200);
         }
 
-        public function update(Request $request, $id)
+        public function update(Request $request, $id): \Illuminate\Http\JsonResponse
         {
             $achievement = Achievement::find($id);
 

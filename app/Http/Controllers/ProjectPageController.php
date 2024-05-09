@@ -8,14 +8,12 @@
 
     class ProjectPageController extends Controller
     {
-        // Получение списка всех страниц проектов
         public function index(): \Illuminate\Http\JsonResponse
         {
             $projectPages = ProjectPage::all();
             return response()->json(['projectPages' => $projectPages], 200);
         }
 
-        // Создание новой страницы проекта
         public function store(Request $request): \Illuminate\Http\JsonResponse
         {
             $validator = Validator::make($request->all(), [
@@ -39,7 +37,6 @@
             return response()->json(['projectPage' => $projectPage], 201);
         }
 
-        // Обновление страницы проекта
         public function update(Request $request, $id): \Illuminate\Http\JsonResponse
         {
             $validator = Validator::make($request->all(), [

@@ -8,13 +8,13 @@
 
     class MemberPageController extends Controller
     {
-        public function index()
+        public function index(): \Illuminate\Http\JsonResponse
         {
             $memberPages = MemberPage::all();
             return response()->json(['memberPages' => $memberPages], 200);
         }
 
-        public function store(Request $request)
+        public function store(Request $request): \Illuminate\Http\JsonResponse
         {
             $validator = Validator::make($request->all(), [
                 'photo' => 'required|array',
@@ -34,7 +34,7 @@
             return response()->json(['memberPage' => $memberPage], 201);
         }
 
-        public function show($id)
+        public function show($id): \Illuminate\Http\JsonResponse
         {
             $memberPage = MemberPage::find($id);
 
@@ -45,7 +45,7 @@
             return response()->json(['memberPage' => $memberPage], 200);
         }
 
-        public function update(Request $request, $id)
+        public function update(Request $request, $id): \Illuminate\Http\JsonResponse
         {
             $memberPage = MemberPage::find($id);
 
@@ -71,7 +71,7 @@
             return response()->json(['memberPage' => $memberPage], 200);
         }
 
-        public function destroy($id)
+        public function destroy($id): \Illuminate\Http\JsonResponse
         {
             $memberPage = MemberPage::find($id);
 

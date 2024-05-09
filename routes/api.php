@@ -15,7 +15,7 @@
         return $request->user();
     });
 
-
+    //auth
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
     Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
@@ -25,14 +25,14 @@
     Route::get('/about', [AboutPageController::class, 'index']);
     Route::middleware('auth:sanctum')->post('/about/update', [AboutPageController::class, 'update']); // Обновить данные о странице "О нас"
 
-
+    //project-pages
     Route::get('/project-pages', [ProjectPageController::class, 'index']);
     Route::get('/project-pages/{id}', [ProjectPageController::class, 'show']);
     Route::post('/project-pages', [ProjectPageController::class, 'store']);
     Route::put('/project-pages/{id}', [ProjectPageController::class, 'update']);
 
 
-
+    //achievements
     Route::get('/achievements', [AchievementController::class, 'index']);
     Route::post('/achievements', [AchievementController::class, 'store']);
     Route::get('/achievements/{id}', [AchievementController::class, 'show']);
@@ -40,15 +40,11 @@
     Route::delete('/achievements/{id}', [AchievementController::class, 'destroy']);
 
 
-
-
-
     Route::get('/member-pages', [MemberPageController::class, 'index']);
     Route::post('/member-pages', [MemberPageController::class, 'store']);
     Route::get('/member-pages/{id}', [MemberPageController::class, 'show']);
     Route::put('/member-pages/{id}', [MemberPageController::class, 'update']);
     Route::delete('/member-pages/{id}', [MemberPageController::class, 'destroy']);
-
 
 
     Route::get('/orders', [OrderController::class, 'index']);

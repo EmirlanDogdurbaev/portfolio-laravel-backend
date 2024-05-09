@@ -8,13 +8,13 @@
 
     class OrderController extends Controller
     {
-        public function index()
+        public function index(): \Illuminate\Http\JsonResponse
         {
             $orders = Order::all();
             return response()->json(['orders' => $orders], 200);
         }
 
-        public function store(Request $request)
+        public function store(Request $request): \Illuminate\Http\JsonResponse
         {
             $validator = Validator::make($request->all(), [
                 'title' => 'required|string',
@@ -34,7 +34,7 @@
             return response()->json(['order' => $order], 201);
         }
 
-        public function show($id)
+        public function show($id): \Illuminate\Http\JsonResponse
         {
             $order = Order::find($id);
 
@@ -45,7 +45,7 @@
             return response()->json(['order' => $order], 200);
         }
 
-        public function update(Request $request, $id)
+        public function update(Request $request, $id): \Illuminate\Http\JsonResponse
         {
             $order = Order::find($id);
 
@@ -71,7 +71,7 @@
             return response()->json(['order' => $order], 200);
         }
 
-        public function destroy($id)
+        public function destroy($id): \Illuminate\Http\JsonResponse
         {
             $order = Order::find($id);
 

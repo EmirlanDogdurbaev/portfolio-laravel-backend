@@ -1,6 +1,5 @@
 <?php
 
-
     namespace App\Http\Controllers;
 
     use App\Models\User;
@@ -12,9 +11,8 @@
 
     class AuthController extends Controller
     {
-        public function register(Request $request)
+        public function register(Request $request): \Illuminate\Http\JsonResponse
         {
-            // Валидация данных запроса
             $validator = Validator::make($request->all(), [
                 'name' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255|unique:users',
@@ -25,22 +23,20 @@
                 return response()->json(['error' => $validator->errors()], 422);
             }
 
-            // Создание нового пользователя
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
 
-            // Опционально: выдача токена для нового пользователя (автоматический вход после регистрации)
             $token = $user->createToken('AuthToken')->plainTextToken;
 
             return response()->json(['user' => $user, 'token' => $token], 201);
         }
 
-        public function login(Request $request)
+        public function login(Request $request): \Illuminate\Http\JsonResponse
         {
-            // Валидация данных запроса
+
             $validator = Validator::make($request->all(), [
                 'email' => 'required|string|email',
                 'password' => 'required|string',
@@ -50,7 +46,6 @@
                 return response()->json(['error' => $validator->errors()], 422);
             }
 
-            // Аутентификация пользователя
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 $user = Auth::user();
                 $token = $user->createToken('AuthToken')->plainTextToken;
@@ -61,7 +56,7 @@
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        public function logout(Request $request)
+        public function logout(Request $request): \Illuminate\Http\JsonResponse
         {
             $request->user()->tokens()->delete();
 
