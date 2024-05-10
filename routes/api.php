@@ -39,14 +39,14 @@
     Route::put('/achievements/{id}', [AchievementController::class, 'update']);
     Route::delete('/achievements/{id}', [AchievementController::class, 'destroy']);
 
-
+    //member-pages
     Route::get('/member-pages', [MemberPageController::class, 'index']);
     Route::post('/member-pages', [MemberPageController::class, 'store']);
     Route::get('/member-pages/{id}', [MemberPageController::class, 'show']);
     Route::put('/member-pages/{id}', [MemberPageController::class, 'update']);
     Route::delete('/member-pages/{id}', [MemberPageController::class, 'destroy']);
 
-
+    //orders
     Route::get('/orders', [OrderController::class, 'index']);
     Route::post('/orders', [OrderController::class, 'store']);
     Route::get('/orders/{id}', [OrderController::class, 'show']);
